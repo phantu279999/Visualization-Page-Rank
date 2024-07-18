@@ -1,4 +1,3 @@
-import sqlite3
 from _dbconnection.base_sqlite import BaseSqlite
 
 

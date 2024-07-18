@@ -1,4 +1,5 @@
-Simple Python Search Spider, Page Ranker, and Visualizer
+#  Simple Python Search Spider, Page Ranker, and Visualizer.
+
 
 This is a set of programs that emulate some of the functions of a 
 search engine. They store their data in a SQLITE3 database named
@@ -21,18 +22,22 @@ to type the following command before running this code:
 
 http://stackoverflow.com/questions/388490/unicode-characters-in-windows-command-line-how
 
+## Spider data from web
+
+```bash
 Mac: rm spider.sqlite
 Mac: python3 spider.py
 
 Win: del spider.sqlite
-Win: spider.py
+Win: python spider.py
 
-Enter web url or enter: http://www.dr-chuck.com/
-['http://www.dr-chuck.com']
-How many pages:2
-1 http://www.dr-chuck.com/ 12
-2 http://www.dr-chuck.com/csev-blog/ 57
-How many pages:
+execute:
+    Enter web url or enter: http://www.dr-chuck.com/
+    ['http://www.dr-chuck.com']
+    How many pages:2
+    1 http://www.dr-chuck.com/ 12
+    2 http://www.dr-chuck.com/csev-blog/ 57
+```
 
 In this sample run, we told it to crawl a website and retrieve two 
 pages. If you restart the program again and tell it to crawl more
@@ -40,33 +45,27 @@ pages, it will not re-crawl any pages already in the database. Upon
 restart it goes to a random non-crawled page and starts there. So 
 each successive run of spider.py is additive.
 
-Mac: python3 spider.py 
-Win: spider.py
-
-Enter web url or enter: http://www.dr-chuck.com/
-['http://www.dr-chuck.com']
-How many pages:3
-3 http://www.dr-chuck.com/csev-blog 57
-4 http://www.dr-chuck.com/dr-chuck/resume/speaking.htm 1
-5 http://www.dr-chuck.com/dr-chuck/resume/index.htm 13
-How many pages:
-
-You can have multiple starting points in the same database - 
+You can have multiple starting points in the same database -
 within the program, these are called "webs". The spider
 chooses randomly amongst all non-visited links across all
 the webs.
 
+## Dump
+
 If you want to dump the contents of the spider.sqlite file, you can 
 run spdump.py as follows:
 
+```bash
 Mac: python3 spdump.py 
 Win: spdump.py
 
-(5, None, 1.0, 3, u'http://www.dr-chuck.com/csev-blog')
-(3, None, 1.0, 4, u'http://www.dr-chuck.com/dr-chuck/resume/speaking.htm')
-(1, None, 1.0, 2, u'http://www.dr-chuck.com/csev-blog/')
-(1, None, 1.0, 5, u'http://www.dr-chuck.com/dr-chuck/resume/index.htm')
-4 rows.
+execute:
+    (5, None, 1.0, 3, u'http://www.dr-chuck.com/csev-blog')
+    (3, None, 1.0, 4, u'http://www.dr-chuck.com/dr-chuck/resume/speaking.htm')
+    (1, None, 1.0, 2, u'http://www.dr-chuck.com/csev-blog/')
+    (1, None, 1.0, 5, u'http://www.dr-chuck.com/dr-chuck/resume/index.htm')
+    4 rows.
+```
 
 This shows the number of incoming links, the old page rank, the new page
 rank, the id of the page, and the url of the page. The spdump.py program
@@ -76,24 +75,32 @@ Once you have a few pages in the database, you can run Page Rank on the
 pages using the sprank.py program. You simply tell it how many Page
 Rank iterations to run.
 
+## Caculater Page Rank
+
+```bash
 Mac: python3 sprank.py 
 Win: sprank.py 
 
-How many iterations:2
-1 0.546848992536
-2 0.226714939664
-[(1, 0.559), (2, 0.659), (3, 0.985), (4, 2.135), (5, 0.659)]
+execute:
+    How many iterations:2
+    1 0.546848992536
+    2 0.226714939664
+    [(1, 0.559), (2, 0.659), (3, 0.985), (4, 2.135), (5, 0.659)]
+```
 
 You can dump the database again to see that page rank has been updated:
 
-Mac: python3 spdump.py 
-Win: spdump.py 
+```bash
+Mac: python3 spdump.py
+Win: spdump.py
 
-(5, 1.0, 0.985, 3, u'http://www.dr-chuck.com/csev-blog')
-(3, 1.0, 2.135, 4, u'http://www.dr-chuck.com/dr-chuck/resume/speaking.htm')
-(1, 1.0, 0.659, 2, u'http://www.dr-chuck.com/csev-blog/')
-(1, 1.0, 0.659, 5, u'http://www.dr-chuck.com/dr-chuck/resume/index.htm')
-4 rows.
+execute:
+    (5, 1.0, 0.985, 3, u'http://www.dr-chuck.com/csev-blog')
+    (3, 1.0, 2.135, 4, u'http://www.dr-chuck.com/dr-chuck/resume/speaking.htm')
+    (1, 1.0, 0.659, 2, u'http://www.dr-chuck.com/csev-blog/')
+    (1, 1.0, 0.659, 5, u'http://www.dr-chuck.com/dr-chuck/resume/index.htm')
+    4 rows.
+```
 
 You can run sprank.py as many times as you like and it will simply refine
 the page rank the more times you run it.  You can even run sprank.py a few times
@@ -159,3 +166,4 @@ http://mbostock.github.com/d3/
 If you rerun the other utilities and then re-run spjson.py - you merely
 have to press refresh in the browser to get the new data from spider.js.
 
+From Course 'Python For Everybody'

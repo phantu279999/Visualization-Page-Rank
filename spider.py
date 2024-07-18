@@ -1,12 +1,14 @@
-import sqlite3
 import traceback
 import ssl
 from urllib.parse import urljoin
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
 
-conn = sqlite3.connect('spider.sqlite')
-cur = conn.cursor()
+from _dbconnection.base_sqlite import BaseSqlite
+
+
+db = BaseSqlite('spider.sqlite')
+conn, cur = db.conn, db.cur
 
 
 def setup_certificate():

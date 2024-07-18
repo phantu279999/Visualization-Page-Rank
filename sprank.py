@@ -1,8 +1,9 @@
 import os
-import sqlite3
+from _dbconnection.base_sqlite import BaseSqlite
 
-conn = sqlite3.connect('spider.sqlite')
-cur = conn.cursor()
+
+db = BaseSqlite('spider.sqlite')
+conn, cur = db.conn, db.cur
 
 
 def get_list_fromids():
