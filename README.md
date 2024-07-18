@@ -1,5 +1,7 @@
 #  Simple Python Search Spider, Page Ranker, and Visualizer.
 
+I have fixed bugs and improved the code
+
 This is a set of programs that emulate some of the functions of a 
 search engine. They store their data in a SQLITE3 database named
 'spider.sqlite'. This file can be removed at any time to restart the
@@ -106,14 +108,21 @@ the page rank the more times you run it.  You can even run sprank.py a few times
 and then go spider a few more pages with spider.py and then run sprank.py
 to converge the page ranks.
 
+
+## Reset Page rank
+
 If you want to restart the Page Rank calculations without re-spidering the 
 web pages, you can use spreset.py
 
+```bash
 Mac: python3 spreset.py 
 Win: spreset.py 
 
-All pages set to a rank of 1.0
+execute:
+  All pages set to a rank of 1.0
+```
 
+##
 Mac: python3 sprank.py 
 Win: sprank.py 
 
@@ -142,16 +151,21 @@ unbalanced and so the individual page ranks are changing wildly.
 But in a few short iterations, the page rank converges.  You 
 should run sprank.py long enough that the page ranks converge.
 
+## Visualize Page Rank
+
 If you want to visualize the current top pages in terms of page rank,
 run spjson.py to write the pages out in JSON format to be viewed in a
 web browser.
 
+```bash
 Mac: python3 spjson.py 
 Win: spjson.py 
 
-Creating JSON output on spider.js...
-How many nodes? 30
-Open force.html in a browser to view the visualization
+execute:
+    Creating JSON output on spider.js...
+    How many nodes? 30
+    Open force.html in a browser to view the visualization
+```
 
 You can view this data by opening the file force.html in your web browser.  
 This shows an automatic layout of the nodes and links. You can click and 
@@ -165,4 +179,5 @@ http://mbostock.github.com/d3/
 If you rerun the other utilities and then re-run spjson.py - you merely
 have to press refresh in the browser to get the new data from spider.js.
 
+## License
 From Course 'Python For Everybody'
